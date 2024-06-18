@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\AuthenticationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticationController extends Controller
 {
+    private AuthenticationService $authenticationService;
+
+    public function __construct(AuthenticationService $authenticationService)
+    {
+        $this->authenticationService = $authenticationService;
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -15,31 +23,30 @@ class AuthenticationController extends Controller
             'password' => 'required',
         ]);
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        // Use service to attempt login
+        $token = $this->authenticationService->login($request->email, $request->password);
+
+        if (!$token) {
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
         }
 
-        $user = User::where('email', $request->email)->firstOrFail();
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
             'message' => 'Login success',
             'access_token' => $token,
-            'token_type' => 'Bearer'
         ]);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'logout success']);
+        $this->authenticationService->logout($request->user());
+        return response()->json(['message' => 'Logout success']);
     }
 
-    public function user(Request $request)
+    public function getUser(Request $request)
     {
-        return $request->user();
+        $user = $this->authenticationService->getUser($request->user());
+        return response()->json($user);
     }
 }

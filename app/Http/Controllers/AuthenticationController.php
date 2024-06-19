@@ -24,9 +24,9 @@ class AuthenticationController extends Controller
         ]);
 
         // Use service to attempt login
-        $token = $this->authenticationService->login($request->email, $request->password);
+        $result = $this->authenticationService->login($request->email, $request->password);
 
-        if (!$token) {
+        if (!$result) {
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
@@ -34,14 +34,19 @@ class AuthenticationController extends Controller
 
         return response()->json([
             'message' => 'Login success',
-            'access_token' => $token,
+            'access_token' => $result['token'],
+            'user' => $result['user']
         ]);
     }
 
     public function logout(Request $request)
     {
-        $this->authenticationService->logout($request->user());
-        return response()->json(['message' => 'Logout success']);
+        $user = $this->authenticationService->logout($request->user());
+
+        return response()->json([
+            'message' => 'Logout success',
+            'user' => $user
+        ]);
     }
 
     public function getUser(Request $request)

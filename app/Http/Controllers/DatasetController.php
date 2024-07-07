@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dataset;
-use App\Services\DatasetService;
 use Illuminate\Http\Request;
+use App\Imports\DatasetsImport;
+use App\Services\DatasetService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DatasetController extends Controller
 {
@@ -91,6 +93,27 @@ class DatasetController extends Controller
         ], 200);
     }
 
+    public function storefile(Request $request)
+    {
+        $request->validate([
+            'dataset' => 'required|file|mimes:xlsx,xls',
+        ]);
+
+        try {
+            $import = new DatasetsImport($this->datasetService);
+            Excel::import($import, $request->file('dataset'));
+
+            return response()->json([
+                'message' => 'File imported successfully',
+                'data' => $import->getImportedData(),
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error importing file: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function regression()
     {
         $sums = $this->datasetService->sums();
@@ -99,5 +122,19 @@ class DatasetController extends Controller
             'message' => 'Calculated sums successfully',
             'sums' => $sums
         ], 200);
+    }
+
+    public function destroyAll()
+    {
+        try {
+            Dataset::truncate();
+            return response()->json([
+                'message' => 'All datasets have been deleted successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error deleting datasets: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }

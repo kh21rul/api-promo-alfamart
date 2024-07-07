@@ -14,34 +14,40 @@ class DatasetServiceImpl implements DatasetService
 
     public function store(array $data)
     {
-        $X1Y = $data['X1'] * $data['Y'];
-        $X2Y = $data['X2'] * $data['Y'];
-        $X3Y = $data['X3'] * $data['Y'];
+        return $this->save(new Dataset(), $data);
+    }
 
-        $X1X2 = $data['X1'] * $data['X2'];
-        $X1X3 = $data['X1'] * $data['X3'];
-        $X2X3 = $data['X2'] * $data['X3'];
+    public function update(Dataset $dataset, array $data)
+    {
+        return $this->save($dataset, $data);
+    }
 
-        $X1_square = $data['X1'] ** 2;
-        $X2_square = $data['X2'] ** 2;
-        $X3_square = $data['X3'] ** 2;
+    public function delete(Dataset $dataset)
+    {
+        $dataset->delete();
+    }
 
-        $dataset = Dataset::create([
-            'nama_toko' => $data['nama_toko'],
-            'Y' => $data['Y'],
-            'X1' => $data['X1'],
-            'X2' => $data['X2'],
-            'X3' => $data['X3'],
-            'X1Y' => $X1Y,
-            'X2Y' => $X2Y,
-            'X3Y' => $X3Y,
-            'X1X2' => $X1X2,
-            'X1X3' => $X1X3,
-            'X2X3' => $X2X3,
-            'X1_square' => $X1_square,
-            'X2_square' => $X2_square,
-            'X3_square' => $X3_square,
-        ]);
+    private function save(Dataset $dataset, array $data)
+    {
+        $dataset->nama_toko = $data['nama_toko'];
+        $dataset->Y = $data['Y'];
+        $dataset->X1 = $data['X1'];
+        $dataset->X2 = $data['X2'];
+        $dataset->X3 = $data['X3'];
+
+        $dataset->X1Y = $dataset->X1 * $dataset->Y;
+        $dataset->X2Y = $dataset->X2 * $dataset->Y;
+        $dataset->X3Y = $dataset->X3 * $dataset->Y;
+
+        $dataset->X1X2 = $dataset->X1 * $dataset->X2;
+        $dataset->X1X3 = $dataset->X1 * $dataset->X3;
+        $dataset->X2X3 = $dataset->X2 * $dataset->X3;
+
+        $dataset->X1_square = pow($dataset->X1, 2);
+        $dataset->X2_square = pow($dataset->X2, 2);
+        $dataset->X3_square = pow($dataset->X3, 2);
+
+        $dataset->save();
 
         return $dataset;
     }

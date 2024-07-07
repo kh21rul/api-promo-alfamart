@@ -62,7 +62,21 @@ class DatasetController extends Controller
      */
     public function update(Request $request, Dataset $dataset)
     {
-        //
+        // return "test";
+        $validatedData = $request->validate([
+            'nama_toko' => 'required|string',
+            'Y' => 'required|numeric',
+            'X1' => 'required|numeric',
+            'X2' => 'required|numeric',
+            'X3' => 'required|numeric',
+        ]);
+
+        $result = $this->datasetService->update($dataset, $validatedData);
+
+        return response()->json([
+            'message' => 'Data updated successfully',
+            'data' => $result,
+        ], 200);
     }
 
     /**
@@ -70,7 +84,11 @@ class DatasetController extends Controller
      */
     public function destroy(Dataset $dataset)
     {
-        //
+        $this->datasetService->delete($dataset);
+
+        return response()->json([
+            'message' => 'Data deleted successfully',
+        ], 200);
     }
 
     public function regression()

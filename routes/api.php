@@ -9,7 +9,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/user', [AuthenticationController::class, 'getUser']);
 
     Route::get('/datasets/regression', [DatasetController::class, 'regression']);
-    Route::apiResource('/datasets', DatasetController::class);
+    Route::apiResource('/datasets', DatasetController::class)->except('show');
 });
 
 Route::post('/login', [AuthenticationController::class, 'login']);

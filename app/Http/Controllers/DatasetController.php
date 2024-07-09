@@ -117,10 +117,24 @@ class DatasetController extends Controller
     public function regression()
     {
         $sums = $this->datasetService->sums();
+        $n = $this->datasetService->count();
+        $matrixA = $this->datasetService->matrixA();
+        $matrixA1 = $this->datasetService->matrixA1();
+        $matrixA2 = $this->datasetService->matrixA2();
+        $matrixA3 = $this->datasetService->matrixA3();
+        $matrixA4 = $this->datasetService->matrixA4();
+        $nilai_H = $this->datasetService->nilaiH();
 
         return response()->json([
-            'message' => 'Calculated sums successfully',
-            'sums' => $sums
+            'message' => 'Calculated Regression Successfully',
+            'sums' => $sums,
+            'nilai_n' => $n,
+            'matrixA' => $matrixA,
+            'matrixA1' => $matrixA1,
+            'matrixA2' => $matrixA2,
+            'matrixA3' => $matrixA3,
+            'matrixA4' => $matrixA4,
+            'nilai_H' => $nilai_H,
         ], 200);
     }
 

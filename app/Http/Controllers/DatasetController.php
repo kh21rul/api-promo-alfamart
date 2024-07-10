@@ -133,6 +133,7 @@ class DatasetController extends Controller
         $nilai_b2 = $this->datasetService->nilaiB2();
         $nilai_b3 = $this->datasetService->nilaiB3();
         $nilai_b4 = $this->datasetService->nilaiB4();
+        $promo_terefektif = $this->datasetService->efektifPromo();
 
         return response()->json([
             'message' => 'Calculated Regression Successfully',
@@ -153,6 +154,7 @@ class DatasetController extends Controller
             'nilai_b2' => $nilai_b2,
             'nilai_b3' => $nilai_b3,
             'nilai_b4' => $nilai_b4,
+            'promo_terefektif' => $promo_terefektif,
         ], 200);
     }
 

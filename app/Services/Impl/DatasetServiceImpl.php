@@ -420,4 +420,26 @@ class DatasetServiceImpl implements DatasetService
 
         return $nilai_b4;
     }
+
+    public function efektifPromo()
+    {
+        $promo_spesial_mingguan = $this->nilaiB2();
+        $promo_tebus_murah = $this->nilaiB3();
+        $promo_serba_gratis = $this->nilaiB4();
+
+        // Buat array dengan nilai promo
+        $promo_values = [
+            'promo_spesial_mingguan' => $promo_spesial_mingguan,
+            'promo_tebus_murah' => $promo_tebus_murah,
+            'promo_serba_gratis' => $promo_serba_gratis,
+        ];
+
+        // Urutkan array berdasarkan nilai dari yang terbesar ke yang terkecil
+        arsort($promo_values);
+
+        // Ambil tiga promo teratas
+        $promo_terefektif = array_slice($promo_values, 0, 3);
+
+        return $promo_terefektif;
+    }
 }

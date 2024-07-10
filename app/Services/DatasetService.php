@@ -27,4 +27,5 @@ interface DatasetService
     public function nilaiB2();
     public function nilaiB3();
     public function nilaiB4();
+    public function efektifPromo();
 }

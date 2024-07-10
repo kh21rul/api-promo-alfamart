@@ -26,7 +26,7 @@ class DatasetController extends Controller
 
         return response()->json([
             'message' => 'Successfully retrieved all datasets',
-            'data' => $datasets
+            'dataset' => $datasets
         ], 200);
     }
 
@@ -46,7 +46,7 @@ class DatasetController extends Controller
         $result = $this->datasetService->store($validatedData);
 
         return response()->json([
-            'message' => 'Data created successfully',
+            'message' => 'Dataset created successfully',
             'data' => $result
         ], 201);
     }
@@ -76,7 +76,7 @@ class DatasetController extends Controller
         $result = $this->datasetService->update($dataset, $validatedData);
 
         return response()->json([
-            'message' => 'Data updated successfully',
+            'message' => 'Dataset updated successfully',
             'data' => $result,
         ], 200);
     }
@@ -89,7 +89,7 @@ class DatasetController extends Controller
         $this->datasetService->delete($dataset);
 
         return response()->json([
-            'message' => 'Data deleted successfully',
+            'message' => 'Dataset deleted successfully',
         ], 200);
     }
 

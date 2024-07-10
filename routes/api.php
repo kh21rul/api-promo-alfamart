@@ -6,15 +6,21 @@ use App\Http\Controllers\DataujiController;
 use App\Http\Controllers\AuthenticationController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/logout', [AuthenticationController::class, 'logout']);
-    Route::get('/user', [AuthenticationController::class, 'getUser']);
+    Route::controller(AuthenticationController::class)->group(function () {
+        Route::get('/logout', 'logout');
+        Route::get('/user', 'getUser');
+    });
 
-    Route::post('/datasets/storefile', [DatasetController::class, 'storefile']);
-    Route::get('/datasets/regression', [DatasetController::class, 'regression']);
-    Route::delete('/datasets/destroyall', [DatasetController::class, 'destroyAll']);
-    Route::apiResource('/datasets', DatasetController::class)->except('show');
+    Route::controller(DatasetController::class)->group(function () {
+        Route::post('/datasets/storefile', 'storefile');
+        Route::get('/datasets/regression', 'regression');
+        Route::delete('/datasets/destroyall', 'destroyAll');
+        Route::apiResource('/datasets', DatasetController::class)->except('show');
+    });
 
-    Route::apiResource('/dataujis', DataujiController::class);
+    Route::controller(DataujiController::class)->group(function () {
+        Route::apiResource('/dataujis', DataujiController::class);
+    });
 });
 
 Route::post('/login', [AuthenticationController::class, 'login']);

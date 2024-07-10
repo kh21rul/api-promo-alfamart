@@ -124,6 +124,15 @@ class DatasetController extends Controller
         $matrixA3 = $this->datasetService->matrixA3();
         $matrixA4 = $this->datasetService->matrixA4();
         $nilai_H = $this->datasetService->nilaiH();
+        $determinan_A = $this->datasetService->detA();
+        $determinan_A1 = $this->datasetService->detA1();
+        $determinan_A2 = $this->datasetService->detA2();
+        $determinan_A3 = $this->datasetService->detA3();
+        $determinan_A4 = $this->datasetService->detA4();
+        $nilai_b1 = $this->datasetService->nilaiB1();
+        $nilai_b2 = $this->datasetService->nilaiB2();
+        $nilai_b3 = $this->datasetService->nilaiB3();
+        $nilai_b4 = $this->datasetService->nilaiB4();
 
         return response()->json([
             'message' => 'Calculated Regression Successfully',
@@ -135,6 +144,15 @@ class DatasetController extends Controller
             'matrixA3' => $matrixA3,
             'matrixA4' => $matrixA4,
             'nilai_H' => $nilai_H,
+            'determinan_A' => $determinan_A,
+            'determinan_A1' => $determinan_A1,
+            'determinan_A2' => $determinan_A2,
+            'determinan_A3' => $determinan_A3,
+            'determinan_A4' => $determinan_A4,
+            'nilai_b1' => $nilai_b1,
+            'nilai_b2' => $nilai_b2,
+            'nilai_b3' => $nilai_b3,
+            'nilai_b4' => $nilai_b4,
         ], 200);
     }
 

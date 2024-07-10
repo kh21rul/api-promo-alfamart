@@ -4,6 +4,7 @@ namespace App\Services\Impl;
 
 use App\Models\Dataset;
 use App\Services\DatasetService;
+use MathPHP\LinearAlgebra\MatrixFactory;
 
 class DatasetServiceImpl implements DatasetService
 {
@@ -327,5 +328,96 @@ class DatasetServiceImpl implements DatasetService
         ];
 
         return $nilai_H;
+    }
+
+    public function calculateDeterminant($matrixData)
+    {
+        $matrix = [
+            [$matrixData['b1k1'], $matrixData['b1k2'], $matrixData['b1k3'], $matrixData['b1k4']],
+            [$matrixData['b2k1'], $matrixData['b2k2'], $matrixData['b2k3'], $matrixData['b2k4']],
+            [$matrixData['b3k1'], $matrixData['b3k2'], $matrixData['b3k3'], $matrixData['b3k4']],
+            [$matrixData['b4k1'], $matrixData['b4k2'], $matrixData['b4k3'], $matrixData['b4k4']],
+        ];
+
+        $matrixObject = MatrixFactory::create($matrix);
+        $determinant = $matrixObject->det();
+
+        return $determinant;
+    }
+
+    public function detA()
+    {
+        $matrixA = $this->matrixA();
+        $determinant = $this->calculateDeterminant($matrixA);
+
+        return $determinant;
+    }
+
+    public function detA1()
+    {
+        $matrixA1 = $this->matrixA1();
+        $determinant = $this->calculateDeterminant($matrixA1);
+
+        return $determinant;
+    }
+
+    public function detA2()
+    {
+        $matrixA2 = $this->matrixA2();
+        $determinant = $this->calculateDeterminant($matrixA2);
+
+        return $determinant;
+    }
+
+    public function detA3()
+    {
+        $matrixA3 = $this->matrixA3();
+        $determinant = $this->calculateDeterminant($matrixA3);
+
+        return $determinant;
+    }
+
+    public function detA4()
+    {
+        $matrixA4 = $this->matrixA4();
+        $determinant = $this->calculateDeterminant($matrixA4);
+
+        return $determinant;
+    }
+
+    public function nilaiB1()
+    {
+        $det_A1 = $this->detA1();
+        $det_A = $this->detA();
+        $nilai_b1 = $det_A1 / $det_A;
+
+        return $nilai_b1;
+    }
+
+    public function nilaiB2()
+    {
+        $det_A2 = $this->detA2();
+        $det_A = $this->detA();
+        $nilai_b2 = $det_A2 / $det_A;
+
+        return $nilai_b2;
+    }
+
+    public function nilaiB3()
+    {
+        $det_A3 = $this->detA3();
+        $det_A = $this->detA();
+        $nilai_b3 = $det_A3 / $det_A;
+
+        return $nilai_b3;
+    }
+
+    public function nilaiB4()
+    {
+        $det_A4 = $this->detA4();
+        $det_A = $this->detA();
+        $nilai_b4 = $det_A4 / $det_A;
+
+        return $nilai_b4;
     }
 }

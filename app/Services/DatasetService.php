@@ -18,4 +18,13 @@ interface DatasetService
     public function matrixA3();
     public function matrixA4();
     public function nilaiH();
+    public function detA();
+    public function detA1();
+    public function detA2();
+    public function detA3();
+    public function detA4();
+    public function nilaiB1();
+    public function nilaiB2();
+    public function nilaiB3();
+    public function nilaiB4();
 }

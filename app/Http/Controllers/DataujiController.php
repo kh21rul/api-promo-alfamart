@@ -23,8 +23,8 @@ class DataujiController extends Controller
         $dataujis = $this->dataujiService->all();
 
         return response()->json([
-            'message' => 'Successfully retrieved all dataujis',
-            'dataset' => $dataujis
+            'message' => 'Successfully retrieved all data uji',
+            'data' => $dataujis
         ], 200);
     }
 
@@ -87,7 +87,7 @@ class DataujiController extends Controller
         $this->dataujiService->delete($datauji);
 
         return response()->json([
-            'message' => 'Datauji deleted successfully',
+            'message' => 'Data uji deleted successfully',
         ], 200);
     }
 }

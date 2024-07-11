@@ -26,7 +26,7 @@ class DatasetController extends Controller
 
         return response()->json([
             'message' => 'Successfully retrieved all datasets',
-            'dataset' => $datasets
+            'data' => $datasets
         ], 200);
     }
 
@@ -56,7 +56,10 @@ class DatasetController extends Controller
      */
     public function show(Dataset $dataset)
     {
-        //
+        return response()->json([
+            'message' => 'Dataset retrieved successfully',
+            'data' => $dataset,
+        ], 200);
     }
 
     /**

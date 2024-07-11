@@ -15,7 +15,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/datasets/storefile', 'storefile');
         Route::get('/datasets/regression', 'regression');
         Route::delete('/datasets/destroyall', 'destroyAll');
-        Route::apiResource('/datasets', DatasetController::class)->except('show');
+        Route::apiResource('/datasets', DatasetController::class);
     });
 
     Route::controller(DataujiController::class)->group(function () {

@@ -119,45 +119,30 @@ class DatasetController extends Controller
 
     public function regression()
     {
-        $sums = $this->datasetService->sums();
-        $n = $this->datasetService->count();
-        $matrixA = $this->datasetService->matrixA();
-        $matrixA1 = $this->datasetService->matrixA1();
-        $matrixA2 = $this->datasetService->matrixA2();
-        $matrixA3 = $this->datasetService->matrixA3();
-        $matrixA4 = $this->datasetService->matrixA4();
-        $nilai_H = $this->datasetService->nilaiH();
-        $determinan_A = $this->datasetService->detA();
-        $determinan_A1 = $this->datasetService->detA1();
-        $determinan_A2 = $this->datasetService->detA2();
-        $determinan_A3 = $this->datasetService->detA3();
-        $determinan_A4 = $this->datasetService->detA4();
-        $nilai_b1 = $this->datasetService->nilaiB1();
-        $nilai_b2 = $this->datasetService->nilaiB2();
-        $nilai_b3 = $this->datasetService->nilaiB3();
-        $nilai_b4 = $this->datasetService->nilaiB4();
-        $promo_terefektif = $this->datasetService->efektifPromo();
+        $regression = [
+            'sums' => $this->datasetService->sums(),
+            'n' => $this->datasetService->count(),
+            'matrixA' => $this->datasetService->matrixA(),
+            'matrixA1' => $this->datasetService->matrixA1(),
+            'matrixA2' => $this->datasetService->matrixA2(),
+            'matrixA3' => $this->datasetService->matrixA3(),
+            'matrixA4' => $this->datasetService->matrixA4(),
+            'nilai_H' => $this->datasetService->nilaiH(),
+            'determinan_A' => $this->datasetService->detA(),
+            'determinan_A1' => $this->datasetService->detA1(),
+            'determinan_A2' => $this->datasetService->detA2(),
+            'determinan_A3' => $this->datasetService->detA3(),
+            'determinan_A4' => $this->datasetService->detA4(),
+            'nilai_b1' => $this->datasetService->nilaiB1(),
+            'nilai_b2' => $this->datasetService->nilaiB2(),
+            'nilai_b3' => $this->datasetService->nilaiB3(),
+            'nilai_b4' => $this->datasetService->nilaiB4(),
+            'promo_terefektif' => $this->datasetService->efektifPromo(),
+        ];
 
         return response()->json([
             'message' => 'Calculated Regression Successfully',
-            'sums' => $sums,
-            'nilai_n' => $n,
-            'matrixA' => $matrixA,
-            'matrixA1' => $matrixA1,
-            'matrixA2' => $matrixA2,
-            'matrixA3' => $matrixA3,
-            'matrixA4' => $matrixA4,
-            'nilai_H' => $nilai_H,
-            'determinan_A' => $determinan_A,
-            'determinan_A1' => $determinan_A1,
-            'determinan_A2' => $determinan_A2,
-            'determinan_A3' => $determinan_A3,
-            'determinan_A4' => $determinan_A4,
-            'nilai_b1' => $nilai_b1,
-            'nilai_b2' => $nilai_b2,
-            'nilai_b3' => $nilai_b3,
-            'nilai_b4' => $nilai_b4,
-            'promo_terefektif' => $promo_terefektif,
+            'data' => $regression
         ], 200);
     }
 

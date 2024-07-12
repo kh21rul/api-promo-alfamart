@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Datauji extends Model
+class Roi extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];

@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoiController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DataujiController;
+use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\RoiController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::controller(AuthenticationController::class)->group(function () {
@@ -26,6 +27,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::controller(RoiController::class)->group(function () {
         Route::apiResource('/rois', RoiController::class);
     });
+
+    Route::controller(ConsumerController::class)->group(function () {
+        Route::get('/consumers/analysis', 'analysis');
+        Route::get('/consumers', 'index');
+        Route::get('/consumers/{consumer}', 'show');
+        Route::delete('/consumers/{consumer}', 'destroy');
+    });
 });
 
 Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::apiResource('/consumers', ConsumerController::class)->except(['index', 'show', 'destroy', 'update']);

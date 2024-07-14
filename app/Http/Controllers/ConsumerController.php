@@ -88,6 +88,11 @@ class ConsumerController extends Controller
 
     public function analysis()
     {
-        return "test analysis";
+        $data_analysis = $this->consumerService->analysis();
+
+        return response()->json([
+            'message' => 'Calculated Analysis Successfully',
+            'data' => $data_analysis
+        ], 200);
     }
 }

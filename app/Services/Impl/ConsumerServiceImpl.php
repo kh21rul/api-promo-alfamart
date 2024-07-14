@@ -31,6 +31,7 @@ class ConsumerServiceImpl implements ConsumerService
             'promo_kemasan_menarik' => $this->kemasanMenarik(),
             'kunjungan_alfamart' => $this->kunjunganAlfamart(),
             'promo_paling_menarik' => $this->promoMenarik(),
+            'produk_promo_terlaris' => $this->produkPromoTerlaris(),
             'kepuasan_layanan_alfamart' => $this->kepuasanLayananHarga(),
         ];
 
@@ -113,6 +114,17 @@ class ConsumerServiceImpl implements ConsumerService
         ];
 
         return $promo_paling_menarik;
+    }
+
+    private function produkPromoTerlaris()
+    {
+        $produk_promo_terlaris = [
+            'spesial_mingguan' => Consumer::where('jenis_promo', 'Spesial Mingguan')->sum('jumlah_produk'),
+            'serba_gratis' => Consumer::where('jenis_promo', 'Serba Gratis')->sum('jumlah_produk'),
+            'tebus_murah' => Consumer::where('jenis_promo', 'Tebus Murah')->sum('jumlah_produk'),
+        ];
+
+        return $produk_promo_terlaris;
     }
 
     private function kepuasanLayananHarga()

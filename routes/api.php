@@ -5,6 +5,7 @@ use App\Http\Controllers\RoiController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DataujiController;
+use App\Http\Controllers\RoishopController;
 use App\Http\Controllers\ConsumerController;
 use App\Http\Controllers\AuthenticationController;
 
@@ -30,7 +31,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::controller(ShopController::class)->group(function () {
+        Route::get('/shops/roi/{shop:slug}', 'getroishops');
         Route::apiResource('/shops', ShopController::class);
+    });
+
+    Route::controller(RoishopController::class)->group(function () {
+        Route::apiResource('/roishops', RoishopController::class);
     });
 
     Route::controller(ConsumerController::class)->group(function () {

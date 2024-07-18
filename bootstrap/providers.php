@@ -7,5 +7,6 @@ return [
     App\Providers\DatasetServiceProvider::class,
     App\Providers\DataujiServiceProvider::class,
     App\Providers\RoiServiceProvider::class,
+    App\Providers\RoishopServiceProvider::class,
     App\Providers\ShopServiceProvider::class,
 ];

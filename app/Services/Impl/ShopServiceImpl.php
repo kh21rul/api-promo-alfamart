@@ -3,6 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Models\Shop;
+use Illuminate\Support\Str;
 use App\Services\ShopService;
 
 class ShopServiceImpl implements ShopService
@@ -31,6 +32,7 @@ class ShopServiceImpl implements ShopService
     {
         $shop->nama_toko = $data['nama_toko'];
         $shop->standart_industri = $data['standart_industri'];
+        $shop->slug = Str::slug($data['nama_toko']);
         $shop->save();
 
         return  $shop;

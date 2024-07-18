@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Services\ShopService;
+use App\Http\Resources\RoishopResource;
 
 class ShopController extends Controller
 {
@@ -84,6 +85,18 @@ class ShopController extends Controller
 
         return response()->json([
             'message' => 'Data shop deleted successfully',
+        ], 200);
+    }
+
+    public function getroishops(Shop $shop)
+    {
+        $roishops = $shop->roishops;
+
+        $result = RoishopResource::collection($roishops->loadMissing('shop:id,nama_toko'));
+
+        return response()->json([
+            'message' => 'Data roishop ' . $shop->nama_toko . ' retrieved successfully',
+            'data' => $result
         ], 200);
     }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('nama_toko');
+            $table->string('slug')->unique();
             $table->string('standart_industri');
             $table->timestamps();
         });

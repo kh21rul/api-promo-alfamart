@@ -128,7 +128,7 @@ class DatasetController extends Controller
             'matrixA3' => $this->datasetService->matrixA3(),
             'matrixA4' => $this->datasetService->matrixA4(),
             'nilai_H' => $this->datasetService->nilaiH(),
-            'determinan_A' => $this->datasetService->detA(),
+            'determinan_A' => sprintf("%.2f", $this->datasetService->detA()),
             'determinan_A1' => $this->datasetService->detA1(),
             'determinan_A2' => $this->datasetService->detA2(),
             'determinan_A3' => $this->datasetService->detA3(),

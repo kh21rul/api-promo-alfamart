@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoiController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DataujiController;
 use App\Http\Controllers\ConsumerController;
@@ -26,6 +27,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::controller(RoiController::class)->group(function () {
         Route::apiResource('/rois', RoiController::class);
+    });
+
+    Route::controller(ShopController::class)->group(function () {
+        Route::apiResource('/shops', ShopController::class);
     });
 
     Route::controller(ConsumerController::class)->group(function () {

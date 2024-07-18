@@ -9,7 +9,7 @@ class RoiServiceImpl implements RoiService
 {
     public function all()
     {
-        return Roi::all();
+        return Roi::latest()->get();
     }
 
     public function store(array $data)

@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Khairul Aqram',
-            'email' => 'khairulaqram21@gmail.com',
+            'name' => 'Ima Pratiwi',
+            'email' => 'ima.200170273@mhs.unimal.ac.id',
         ]);
     }
 }

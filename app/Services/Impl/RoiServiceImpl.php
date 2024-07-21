@@ -40,7 +40,7 @@ class RoiServiceImpl implements RoiService
         $roi->tahun = $data['tahun'];
         $roi->laba_bersih = $data['laba_bersih'];
         $roi->total_aktiva = $data['total_aktiva'];
-        $roi->roi = $nilai_roi;
+        $roi->roi = number_format($nilai_roi, 2);
         $roi->standart_industri = $data['standart_industri'];
         $roi->kondisi = $kondisi;
 

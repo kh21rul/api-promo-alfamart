@@ -43,7 +43,7 @@ class RoishopServiceImpl implements RoishopService
         $roishop->tahun = $data['tahun'];
         $roishop->laba_bersih = $data['laba_bersih'];
         $roishop->total_aktiva = $data['total_aktiva'];
-        $roishop->roi = $nilai_roi;
+        $roishop->roi = number_format($nilai_roi, 2);
         $roishop->kondisi = $kondisi;
 
         $roishop->save();

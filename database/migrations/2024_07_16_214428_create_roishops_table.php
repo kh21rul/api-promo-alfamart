@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('roishops', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained(
-                table: 'shops',
-                indexName: 'roishops_shop_id'
-            );
+            $table->foreignId('shop_id')
+                ->constrained('shops', 'id')
+                ->onDelete('cascade')
+                ->index('roishops_shop_id');
             $table->string('tahun');
             $table->string('laba_bersih');
             $table->string('total_aktiva');

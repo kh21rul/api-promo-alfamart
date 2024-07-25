@@ -10,4 +10,5 @@ interface RoishopService
     public function store(array $data);
     public function update(Roishop $roishop, array $data);
     public function delete(Roishop $roishop);
+    public function getroiaverage();
 }

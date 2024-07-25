@@ -97,4 +97,14 @@ class RoishopController extends Controller
             'message' => 'Data shop deleted successfully',
         ], 200);
     }
+
+    public function getroiaverage()
+    {
+        $result = $this->roishopService->getroiaverage();
+
+        return response()->json([
+            'message' => 'Successfully retrieved all data roishop average',
+            'data' => $result
+        ], 200);
+    }
 }

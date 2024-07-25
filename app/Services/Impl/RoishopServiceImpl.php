@@ -56,4 +56,15 @@ class RoishopServiceImpl implements RoishopService
         $shop = Shop::find($shop_id);
         return $shop->standart_industri;
     }
+
+    public function getroiaverage()
+    {
+        $roi_verage = Shop::with(['roishops' => function ($query) {
+            $query->selectRaw('shop_id, AVG(roi) as average_roi')
+                ->selectRaw('GROUP_CONCAT(DISTINCT tahun ORDER BY tahun ASC) as range_of_years')
+                ->groupBy('shop_id');
+        }])->get();
+
+        return $roi_verage;
+    }
 }

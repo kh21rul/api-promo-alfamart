@@ -36,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::controller(RoishopController::class)->group(function () {
+        Route::get('/roishops/average', 'getroiaverage');
         Route::apiResource('/roishops', RoishopController::class);
     });
 

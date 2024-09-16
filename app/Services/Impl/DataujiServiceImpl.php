@@ -49,13 +49,15 @@ class DataujiServiceImpl implements DataujiService
         $nilai_b2 = $this->datasetService->nilaiB2();
         $nilai_b3 = $this->datasetService->nilaiB3();
         $nilai_b4 = $this->datasetService->nilaiB4();
+        $nilai_b5 = $this->datasetService->nilaiB5();
 
-        $nilai_y = $nilai_b1 + $nilai_b2 * $data['X1'] + $nilai_b3 * $data['X2'] + $nilai_b4 * $data['X3'];
+        $nilai_y = $nilai_b1 + $nilai_b2 * $data['X1'] + $nilai_b3 * $data['X2'] + $nilai_b4 * $data['X3'] + $nilai_b5 * $data['X4'];
 
         $datauji->nama_toko = $data['nama_toko'];
         $datauji->X1 = $data['X1'];
         $datauji->X2 = $data['X2'];
         $datauji->X3 = $data['X3'];
+        $datauji->X4 = $data['X4'];
         $datauji->Y = $nilai_y;
 
         $datauji->save();

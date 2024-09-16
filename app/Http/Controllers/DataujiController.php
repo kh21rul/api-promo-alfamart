@@ -38,6 +38,7 @@ class DataujiController extends Controller
             'X1' => 'required|numeric',
             'X2' => 'required|numeric',
             'X3' => 'required|numeric',
+            'X4' => 'required|numeric',
         ]);
 
         $result = $this->dataujiService->store($validatedData);
@@ -69,6 +70,7 @@ class DataujiController extends Controller
             'X1' => 'required|numeric',
             'X2' => 'required|numeric',
             'X3' => 'required|numeric',
+            'X4' => 'required|numeric',
         ]);
 
         $result = $this->dataujiService->update($datauji, $validatedData);

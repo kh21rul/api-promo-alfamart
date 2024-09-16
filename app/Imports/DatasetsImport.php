@@ -26,6 +26,7 @@ class DatasetsImport implements ToCollection, WithHeadingRow
                 'X1' => $row['spesial_mingguan'] ?? null,
                 'X2' => $row['tebus_murah'] ?? null,
                 'X3' => $row['serba_gratis'] ?? null,
+                'X4' => $row['non_promo'] ?? null,
             ];
 
             // Validasi data sebelum menyimpannya
@@ -39,7 +40,7 @@ class DatasetsImport implements ToCollection, WithHeadingRow
     private function validateRow($data)
     {
         // Pastikan semua field tidak null
-        return $data['nama_toko'] && $data['Y'] && $data['X1'] && $data['X2'] && $data['X3'];
+        return $data['nama_toko'] && $data['Y'] && $data['X1'] && $data['X2'] && $data['X3'] && $data['X4'];
     }
 
     public function getImportedData()

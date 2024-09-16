@@ -41,6 +41,7 @@ class DatasetController extends Controller
             'X1' => 'required|numeric',
             'X2' => 'required|numeric',
             'X3' => 'required|numeric',
+            'X4' => 'required|numeric',
         ]);
 
         $result = $this->datasetService->store($validatedData);
@@ -127,16 +128,19 @@ class DatasetController extends Controller
             'matrixA2' => $this->datasetService->matrixA2(),
             'matrixA3' => $this->datasetService->matrixA3(),
             'matrixA4' => $this->datasetService->matrixA4(),
+            'matrixA5' => $this->datasetService->matrixA5(),
             'nilai_H' => $this->datasetService->nilaiH(),
-            'determinan_A' => sprintf("%.2f", $this->datasetService->detA()),
+            'determinan_A' => $this->datasetService->detA(),
             'determinan_A1' => $this->datasetService->detA1(),
             'determinan_A2' => $this->datasetService->detA2(),
             'determinan_A3' => $this->datasetService->detA3(),
             'determinan_A4' => $this->datasetService->detA4(),
+            'determinan_A5' => $this->datasetService->detA5(),
             'nilai_b1' => $this->datasetService->nilaiB1(),
             'nilai_b2' => $this->datasetService->nilaiB2(),
             'nilai_b3' => $this->datasetService->nilaiB3(),
             'nilai_b4' => $this->datasetService->nilaiB4(),
+            'nilai_b5' => $this->datasetService->nilaiB5(),
             'promo_terefektif' => $this->datasetService->efektifPromo(),
         ];
 

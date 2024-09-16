@@ -18,15 +18,21 @@ return new class extends Migration
             $table->string('X1');
             $table->string('X2');
             $table->string('X3');
+            $table->string('X4');
             $table->string('X1Y');
             $table->string('X2Y');
             $table->string('X3Y');
+            $table->string('X4Y');
             $table->string('X1X2');
             $table->string('X1X3');
+            $table->string('X1X4');
             $table->string('X2X3');
+            $table->string('X2X4');
+            $table->string('X3X4');
             $table->string('X1_square');
             $table->string('X2_square');
             $table->string('X3_square');
+            $table->string('X4_square');
             $table->timestamps();
         });
     }

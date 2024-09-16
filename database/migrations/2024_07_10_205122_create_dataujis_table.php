@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('X1');
             $table->string('X2');
             $table->string('X3');
+            $table->string('X4');
             $table->string('Y');
             $table->timestamps();
         });
